@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/loginRootView"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/loginEmailEditText"
+        android:layout_width="250dp"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:text="eve.holt@reqres.in"
+        android:layout_marginBottom="12dp"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/loginPasswordEditText"
+        android:layout_width="250dp"
+        android:inputType="textPassword"
+        android:layout_marginBottom="12dp"
+        android:hint="Password"
+        android:text="cityslicka"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginButton"
+        android:text="Login"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/loginProgressBar"
+        android:visibility="gone"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+
+</LinearLayout>

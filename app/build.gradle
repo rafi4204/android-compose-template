@@ -1,0 +1,136 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.30'
+    id 'dk.nstack.translation.plugin'
+    id 'dagger.hilt.android.plugin'
+}
+
+translation {
+    appId = keys.appId
+    apiKey = keys.apiKey
+    acceptHeader = keys.acceptHeader
+}
+
+android {
+    compileSdkVersion 33
+    flavorDimensions "default"
+
+    defaultConfig {
+        applicationId "com.monstarlab"
+        minSdkVersion 23
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+
+        manifestPlaceholders = [
+                appId : keys.appId,
+                apiKey: keys.apiKey
+        ]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        dev {
+            dimension "default"
+            applicationIdSuffix ".dev"
+            manifestPlaceholders = [
+                    APP_NAME: "MonstarlabDev",
+                    env     : "staging"
+            ]
+            buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
+        }
+        staging {
+            dimension "default"
+            applicationIdSuffix ".staging"
+            //signingConfig signingConfigs.staging
+            manifestPlaceholders = [
+                    APP_NAME: "MonstarlabStaging",
+                    env     : "staging"
+            ]
+            buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
+        }
+        production {
+            dimension "default"
+            //signingConfig signingConfigs.production
+            manifestPlaceholders = [
+                    APP_NAME: "Monstarlab",
+                    env     : "production"
+            ]
+            buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+
+dependencies {
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}")
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${versions.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${versions.json}"
+
+    implementation "androidx.core:core-ktx:${versions.ktx_core}"
+    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}"
+    testImplementation "junit:junit:${versions.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${versions.junit_ext}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+    //compose
+    implementation "androidx.compose.ui:ui:${versions.compose}"
+    implementation "androidx.compose.foundation:foundation:${versions.compose}"
+    implementation "androidx.compose.runtime:runtime-livedata:${versions.compose}"
+    implementation "androidx.compose.runtime:runtime-rxjava2:${versions.compose}"
+    implementation "androidx.compose.material:material:${versions.compose}"
+    implementation "androidx.compose.material:material-icons-core:${versions.compose}"
+    implementation "androidx.compose.material:material-icons-extended:${versions.compose}"
+    implementation "androidx.compose.ui:ui-tooling:${versions.compose}"
+    implementation "androidx.compose.runtime:runtime:${versions.compose}"
+    implementation "androidx.compose.material3:material3:${versions.material3}"
+    implementation "androidx.compose.material3:material3-window-size-class:${versions.material3}"
+
+
+    implementation "com.google.dagger:hilt-android:${versions.hilt}"
+    kapt "com.google.dagger:hilt-compiler:${versions.hilt}"
+
+
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${versions.retrofit_converter}")
+    implementation("com.squareup.retrofit2:retrofit:${versions.retrofit}")
+    implementation("com.squareup.okhttp3:logging-interceptor:${versions.okhttp}")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:${versions.navigation}")
+    implementation("androidx.navigation:navigation-ui-ktx:${versions.navigation}")
+
+    implementation("androidx.lifecycle:lifecycle-livedata-core-ktx:${versions.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}")
+
+    implementation("androidx.datastore:datastore-preferences:${versions.datastore}")
+
+    implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
+
+}
