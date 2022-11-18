@@ -109,7 +109,7 @@ dependencies {
     implementation "androidx.compose.runtime:runtime:${versions.compose}"
     implementation "androidx.compose.material3:material3:${versions.material3}"
     implementation "androidx.compose.material3:material3-window-size-class:${versions.material3}"
-
+    implementation "androidx.core:core-splashscreen:${versions.splash_screen}"
 
     implementation "com.google.dagger:hilt-android:${versions.hilt}"
     kapt "com.google.dagger:hilt-compiler:${versions.hilt}"

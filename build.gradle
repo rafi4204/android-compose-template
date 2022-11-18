@@ -36,6 +36,7 @@ buildscript {
             datastore           : '1.0.0',
             compose             : '1.2.0-beta02',
             material3           : '1.0.1',
+            splash_screen       : '1.0.0',
     ]
 
     ext.keys = [
