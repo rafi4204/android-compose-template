@@ -109,6 +109,10 @@ dependencies {
     implementation "androidx.compose.runtime:runtime:${versions.compose}"
     implementation "androidx.compose.material3:material3:${versions.material3}"
     implementation "androidx.compose.material3:material3-window-size-class:${versions.material3}"
+    implementation "androidx.activity:activity-compose:${versions.compose}"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.27.0"
+
+    implementation("androidx.navigation:navigation-compose:2.6.0-alpha04")
     implementation "androidx.core:core-splashscreen:${versions.splash_screen}"
 
     implementation "com.google.dagger:hilt-android:${versions.hilt}"

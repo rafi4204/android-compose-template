@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">android-compose-template</string>
+    <string name="home">Home</string>
+    <string name="resources">Resources</string>
+    <string name="login">Login</string>
+    <string name="icon">Icon</string>
 </resources>
