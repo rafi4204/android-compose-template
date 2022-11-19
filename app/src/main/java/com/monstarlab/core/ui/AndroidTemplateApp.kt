@@ -71,7 +71,6 @@ fun AndroidTemplateApp(
         AppNavHost(
             navController = appState.navController,
             onBackClick = appState::onBackClick,
-
             modifier = Modifier
                 .padding(padding)
                 .consumedWindowInsets(padding)

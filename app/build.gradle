@@ -33,6 +33,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        compose true
     }
     buildTypes {
         release {
@@ -75,6 +76,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    composeOptions {
+        kotlinCompilerVersion = versions.kotlin
+        kotlinCompilerExtensionVersion = versions.compose
     }
     kotlinOptions {
         jvmTarget = '1.8'

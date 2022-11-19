@@ -19,5 +19,12 @@ fun AppNavHost(
         modifier = modifier,
     ) {
         homeScreen()
+        loginScreen()
+        resourcesGraph(
+            navigateToDetails = {},
+            nestedGraphs = {
+                resourceDetailsScreen(onBackClick)
+            }
+        )
     }
 }
