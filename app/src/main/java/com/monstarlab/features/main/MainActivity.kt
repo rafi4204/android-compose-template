@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
         splashScreen.setKeepOnScreenCondition {
             false
             //TODO
-            //return true when fetching data from network
+            //return true while fetching data from network
             // when (uiState) {
             //                Loading -> true
             //                is Success -> false
