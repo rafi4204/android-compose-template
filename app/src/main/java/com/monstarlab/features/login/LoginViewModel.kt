@@ -10,6 +10,7 @@ import com.monstarlab.arch.extensions.onSuccess
 import com.monstarlab.core.usecases.user.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import javax.inject.Inject
 
@@ -17,12 +18,16 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase
 ) : ViewModel(), ViewErrorAware, LoadingAware {
-
+    val loginUiInfo by lazy {
+        MutableStateFlow(
+            LoginUiInfo("", "")
+        )
+    }
     val loginResultFlow: MutableSharedFlow<Boolean> = MutableSharedFlow()
 
-    fun login(email: String, password: String) {
+    fun login() {
         loginUseCase
-            .login(email, password)
+            .login(loginUiInfo.value.userName, loginUiInfo.value.password)
             .bindLoading(this)
             .bindError(this)
             .onSuccess {
@@ -30,4 +35,17 @@ class LoginViewModel @Inject constructor(
             }
             .launchIn(viewModelScope)
     }
+
+    fun onUserNameChanged(userName: String) {
+        loginUiInfo.value = loginUiInfo.value.copy(userName = userName)
+    }
+
+    fun onPasswordChanged(password: String) {
+        loginUiInfo.value = loginUiInfo.value.copy(password = password)
+    }
 }
+
+data class LoginUiInfo(
+    val userName: String,
+    val password: String
+)

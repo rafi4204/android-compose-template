@@ -19,7 +19,7 @@ fun AppNavHost(
         modifier = modifier,
     ) {
         homeScreen()
-        loginScreen()
+        loginScreen(navigateToHome = { navController.navigateToHome() })
         resourcesGraph(
             navigateToDetails = {},
             nestedGraphs = {

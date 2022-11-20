@@ -1,9 +1,6 @@
 package com.monstarlab.core.ui
 
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.consumedWindowInsets
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
@@ -74,6 +71,9 @@ fun AndroidTemplateApp(
             modifier = Modifier
                 .padding(padding)
                 .consumedWindowInsets(padding)
+                .systemBarsPadding()
+                .statusBarsPadding()
+                .navigationBarsPadding()
         )
     }
 }
