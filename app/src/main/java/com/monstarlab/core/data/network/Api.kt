@@ -22,6 +22,6 @@ interface Api {
     @GET("users/2")
     suspend fun getUser(): Response<UserResponse>
 
-    @GET("unknown")
-    suspend fun getResources(@Query("page") page: Int = 1): Response<ResourcesResponse>
+    @GET("v2/beers")
+    suspend fun getResources(@Query("page") page: Int, @Query("per_page") limit: Int): Response<ResourcesResponse>
 }

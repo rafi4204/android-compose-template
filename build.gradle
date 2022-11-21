@@ -38,6 +38,7 @@ buildscript {
             material3              : '1.0.1',
             splash_screen          : '1.0.0',
             hilt_navigation_compose: '1.0.0',
+            room                   : '2.4.3',
     ]
 
     ext.keys = [

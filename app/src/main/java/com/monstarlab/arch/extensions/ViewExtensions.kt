@@ -127,6 +127,19 @@ fun <T1, T2> LifecycleOwner.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBl
     }) {}
 }
 
+inline fun <T, V> V.collectFlow(
+    targetFlow: Flow<UseCaseResult<T>>,
+    crossinline action: suspend (T) -> Unit
+) where V : ViewModel, V : ViewErrorAware, V : LoadingAware {
+    targetFlow
+        .bindLoading(this)
+        .bindError(this)
+        .onSuccess {
+            action(it)
+        }
+        .launchIn(viewModelScope)
+}
+
 @ExperimentalCoroutinesApi
 fun View.clicks(throttleTime: Long = 400): Flow<Unit> = callbackFlow {
     this@clicks.setOnClickListener {

@@ -12,7 +12,6 @@ import com.monstarlab.arch.extensions.launchAndRepeatWithViewLifecycle
 import com.monstarlab.arch.extensions.viewBinding
 import com.monstarlab.databinding.FragmentResourceBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class ResourceFragment : Fragment(R.layout.fragment_resource) {

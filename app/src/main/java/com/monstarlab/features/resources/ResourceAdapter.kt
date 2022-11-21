@@ -3,7 +3,7 @@ package com.monstarlab.features.resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.monstarlab.core.domain.model.Resource
+import com.monstarlab.core.pagination.model.Resource
 import com.monstarlab.databinding.ItemResourceBinding
 
 class ResourceAdapter : RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder>() {
