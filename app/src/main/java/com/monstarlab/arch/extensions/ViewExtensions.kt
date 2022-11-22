@@ -121,7 +121,11 @@ fun <T1, T2, T3, T4> LifecycleOwner.combineFlows(
     }) {}
 }
 
-fun <T1, T2> LifecycleOwner.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
+fun <T1, T2> LifecycleOwner.zipFlows(
+    flow1: Flow<T1>,
+    flow2: Flow<T2>,
+    collectBlock: ((T1, T2) -> Unit)
+) {
     collectFlow(flow1.zip(flow2) { v1, v2 ->
         collectBlock.invoke(v1, v2)
     }) {}

@@ -39,6 +39,9 @@ buildscript {
             splash_screen          : '1.0.0',
             hilt_navigation_compose: '1.0.0',
             room                   : '2.4.3',
+            paging_compose         : '1.0.0-alpha17',
+            accompanist           : '0.24.9-beta',
+            accompanist_permission: '0.20.2',
     ]
 
     ext.keys = [

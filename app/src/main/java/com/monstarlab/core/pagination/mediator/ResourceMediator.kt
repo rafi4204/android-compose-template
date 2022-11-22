@@ -20,7 +20,7 @@ class ResourceMediator(
 ) :
     RemoteMediator<Int, Resource>() {
     companion object {
-        const val DEFAULT_PAGE_INDEX = 1
+        const val DEFAULT_PAGE_INDEX = 2
         const val DEFAULT_PAGE_SIZE = 10
     }
 
@@ -45,15 +45,15 @@ class ResourceMediator(
                 // clear all tables in the database
                 if (loadType == LoadType.REFRESH) {
                     appDatabase.getRepoDao().clearRemoteKeys()
-                    appDatabase.getImageModelDao().clearAllResources()
+                    appDatabase.getResourceDao().clearAllResources()
                 }
                 val prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1
                 val nextKey = if (isEndOfList) null else page + 1
                 val keys = response.map {
-                    RemoteKeys(repoId = it.id, prevKey = prevKey, nextKey = nextKey)
+                    RemoteKeys(repoId = it.id.toString(), prevKey = prevKey, nextKey = nextKey)
                 }
                 appDatabase.getRepoDao().insertAll(keys)
-                appDatabase.getImageModelDao().insertAll(response)
+                appDatabase.getResourceDao().insertAll(response)
             }
             return MediatorResult.Success(endOfPaginationReached = isEndOfList)
         } catch (exception: IOException) {
@@ -91,7 +91,9 @@ class ResourceMediator(
         return state.pages
             .lastOrNull { it.data.isNotEmpty() }
             ?.data?.lastOrNull()
-            ?.let { resource -> appDatabase.getRepoDao().remoteKeysResourceId(resource.id) }
+            ?.let { resource ->
+                appDatabase.getRepoDao().remoteKeysResourceId(resource.id.toString())
+            }
     }
 
     /**
@@ -103,7 +105,7 @@ class ResourceMediator(
                 it.data.isNotEmpty()
             }
             ?.data?.firstOrNull()
-            ?.let { doggo -> appDatabase.getRepoDao().remoteKeysResourceId(doggo.id) }
+            ?.let { doggo -> appDatabase.getRepoDao().remoteKeysResourceId(doggo.id.toString()) }
     }
 
     /**
@@ -112,7 +114,7 @@ class ResourceMediator(
     private suspend fun getClosestRemoteKey(state: PagingState<Int, Resource>): RemoteKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { repoId ->
-                appDatabase.getRepoDao().remoteKeysResourceId(repoId)
+                appDatabase.getRepoDao().remoteKeysResourceId(repoId.toString())
             }
         }
     }

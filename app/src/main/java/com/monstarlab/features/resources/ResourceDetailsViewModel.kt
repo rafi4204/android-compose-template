@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
-class ResourceViewModel @Inject constructor(
+class ResourceDetailsViewModel @Inject constructor(
     private val getResourcesUseCase: GetResourcesUseCase
 ) : ViewModel(), ViewErrorAware, LoadingAware {
     var resourceResult = getResourcesUseCase()

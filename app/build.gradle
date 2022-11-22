@@ -50,7 +50,7 @@ android {
                     APP_NAME: "MonstarlabDev",
                     env     : "staging"
             ]
-            buildConfigField "String", "API_URL", "\"https://api.punkapi.com/\""
+            buildConfigField "String", "API_URL", "\"https://api.punkapi.com/v2/\""
         }
         staging {
             dimension "default"
@@ -141,10 +141,13 @@ dependencies {
 
     implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
     implementation "com.jakewharton.timber:timber:${versions.timber}"
+    implementation 'androidx.room:room-paging:2.4.3'
 
     implementation "androidx.paging:paging-runtime-ktx:3.1.1"
     implementation "androidx.room:room-ktx:${versions.room}"
     kapt "androidx.room:room-compiler:${versions.room}"
-    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "androidx.paging:paging-compose:${versions.paging_compose}"
+    implementation "com.google.accompanist:accompanist-flowlayout:${versions.accompanist}"
 
 }

@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "resources")
 data class Resource(
     @PrimaryKey(autoGenerate = true)
-    val id: String,
+    val id: Int,
     val name: String
 
 )

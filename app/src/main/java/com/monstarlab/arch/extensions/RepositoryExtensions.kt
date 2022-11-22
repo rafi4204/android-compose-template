@@ -1,6 +1,6 @@
 package com.monstarlab.arch.extensions
 
-import com.monstarlab.core.domain.error.toError
+import com.monstarlab.core.domain.error.toException
 import retrofit2.Response
 
 inline fun <T> repoCall(
@@ -10,7 +10,7 @@ inline fun <T> repoCall(
     val body = response.body()
     return when (response.isSuccessful && body != null) {
         true -> body
-        false -> throw response.toError()
+        false -> throw response.toException()
     }
 }
 
@@ -21,6 +21,6 @@ inline fun <T, R> Response<T>.mapSuccess(
     if (this.isSuccessful && safeBody != null) {
         return block(safeBody)
     } else {
-        throw toError()
+        throw toException()
     }
 }

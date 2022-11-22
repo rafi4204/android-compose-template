@@ -10,12 +10,12 @@ import com.monstarlab.core.pagination.dao.RemoteKeysDao
 import com.monstarlab.core.pagination.dao.ResourceDao
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 
-@ActivityRetainedScoped
-@Database(version = 1, entities = [Resource::class, RemoteKeys::class], exportSchema = false)
+
+@Database(version = 1, entities = [Resource::class, RemoteKeys::class])
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getRepoDao(): RemoteKeysDao
-    abstract fun getImageModelDao(): ResourceDao
+    abstract fun getResourceDao(): ResourceDao
 
     companion object {
 

@@ -5,6 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.monstarlab.features.resources.ResourceRoute
 
 private const val resourcesGraphRoutePattern = "resources_graph"
 const val resourcesNavigationRoute = "resources_route"
@@ -22,10 +23,7 @@ fun NavGraphBuilder.resourcesGraph(
         startDestination = resourcesNavigationRoute
     ) {
         composable(route = resourcesNavigationRoute) {
-            /*ResourcesRoute(
-                navigateToTopic = navigateToTopic,
-                navigateToAuthor = navigateToAuthor,
-            )*/
+            ResourceRoute(navigateToDetails = navigateToDetails)
         }
         nestedGraphs()
     }

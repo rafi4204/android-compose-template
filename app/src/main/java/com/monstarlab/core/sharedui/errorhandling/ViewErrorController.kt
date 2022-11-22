@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.core.domain.error.ErrorModel
+import com.monstarlab.core.domain.error.ExceptionModel
 import javax.inject.Inject
 
 fun Fragment.showErrorDialog(
@@ -51,28 +52,23 @@ fun Fragment.showErrorSnackbar(
 }
 
 @Suppress("LongMethod")
-fun ErrorModel.mapToViewError(): ViewError {
+fun ExceptionModel.mapToViewError(): ViewError {
     return when (this) {
-        is ErrorModel.Http.Forbidden,
-        is ErrorModel.Http.Unauthorized -> {
+        is ExceptionModel.Http.Forbidden,
+        is ExceptionModel.Http.Unauthorized -> {
             ViewError(
                 title = "Translation.error.errorTitle",
                 message = "Translation.error.authenticationError",
             )
         }
-        is ErrorModel.Http.ServerError -> {
+
+        is ExceptionModel.Http -> {
             ViewError(
                 title = "Translation.error.errorTitle",
                 message = "Translation.error.unknownError",
             )
         }
-        is ErrorModel.Http -> {
-            ViewError(
-                title = "Translation.error.errorTitle",
-                message = "Translation.error.unknownError",
-            )
-        }
-        is ErrorModel.Connection -> {
+        is ExceptionModel.Connection -> {
             ViewError(
                 title = "Translation.error.errorTitle",
                 message = "Translation.error.unknownError",

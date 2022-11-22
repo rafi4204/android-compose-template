@@ -13,6 +13,6 @@ class ResourceRepository @Inject constructor(
 
     suspend fun getResources(page: Int, pageSize: Int): List<Resource> {
         return api.getResources(page, pageSize)
-            .mapSuccess { response -> response.data.map { it.toEntity() } }
+            .mapSuccess { response -> response.map { it.toEntity() } }
     }
 }

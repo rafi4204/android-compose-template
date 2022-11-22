@@ -11,7 +11,7 @@ import org.jetbrains.annotations.VisibleForTesting
 internal const val resourceIdArg = "resourceId"
 internal const val resourceRoute = "resource_route"
 
-fun NavController.navigateToTopic(resourceId: String) {
+fun NavController.navigateToResourceDetails(resourceId: String) {
     this.navigate("$resourceRoute/$resourceId")
 }
 

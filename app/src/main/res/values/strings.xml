@@ -5,4 +5,5 @@
     <string name="login">Login</string>
     <string name="icon">Icon</string>
     <string name="label">Label</string>
+    <string name="no_data_found">No Data Found</string>
 </resources>
