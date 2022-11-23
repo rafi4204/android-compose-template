@@ -6,16 +6,17 @@ package androidx.lifecycle
 
 
 import com.monstarlab.arch.extensions.*
+import com.monstarlab.core.domain.error.ErrorMessage
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
-import com.monstarlab.core.ui.SnackbarManager
-import kotlinx.coroutines.CoroutineScope
+
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import java.util.*
 
 private const val ERROR_FLOW_KEY = "androidx.lifecycle.ErrorFlow"
 private const val LOADING_FLOW_KEY = "androidx.lifecycle.LoadingFlow"
-
+val errorMessage by lazy { MutableStateFlow(ErrorMessage(-1, "")) }
 
 fun <T> T.sendViewError(viewError: ViewError) where T : ViewErrorAware, T : ViewModel {
     viewModelScope.launch {
@@ -68,10 +69,15 @@ fun <F, T> Flow<F>.bindLoading(t: T): Flow<F> where T : LoadingAware, T : ViewMo
         }
 }
 
+
+
 fun <F, T> Flow<UseCaseResult<F>>.bindError(t: T): Flow<UseCaseResult<F>> where T : ViewErrorAware, T : ViewModel {
     return this
         .onError {
             t.emitViewError(it.mapToViewError())
-        //    snackErrorFlow { it.mapToViewError() }
+            errorMessage.value = ErrorMessage(
+                id = UUID.randomUUID().mostSignificantBits,
+                message = it.mapToViewError().message
+            )
         }
 }

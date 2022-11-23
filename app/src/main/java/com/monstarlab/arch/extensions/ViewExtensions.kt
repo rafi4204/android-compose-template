@@ -24,11 +24,6 @@ fun LifecycleOwner.snackErrorFlow(
     }
 }
 
-fun snackErrorFlow(
-     action: (ViewError) -> Unit
-) {
-
-}
 
 fun LifecycleOwner.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
     collectFlow(targetFlow) { loading ->

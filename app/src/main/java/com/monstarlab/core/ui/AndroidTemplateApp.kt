@@ -15,10 +15,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.zIndex
+import androidx.lifecycle.errorMessage
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.monstarlab.arch.extensions.snackErrorFlow
-import com.monstarlab.core.navigation.*
+import com.monstarlab.arch.extensions.collectAsStateLifecycleAware
+import com.monstarlab.core.navigation.AppNavHost
+import com.monstarlab.core.navigation.AppNavigationBar
+import com.monstarlab.core.navigation.AppNavigationBarItem
+import com.monstarlab.core.navigation.TopLevelDestination
 
 @OptIn(
     ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class,
@@ -36,7 +40,14 @@ fun AndroidTemplateApp(
         containerColor = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onBackground,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+        snackbarHost = {
+            SnackbarHost(
+                snackbarHostState,
+                modifier = Modifier
+                    .systemBarsPadding()
+                    .navigationBarsPadding()
+            )
+        },
         topBar = {
             val destination = appState.currentTopLevelDestination
             if (appState.shouldShowTopAppBar) {
@@ -67,9 +78,11 @@ fun AndroidTemplateApp(
             }
         }
     ) { padding ->
-       /* LaunchedEffect(key1 = Unit) {
-            viewErrorFlow()
-        }*/
+        val message = errorMessage.collectAsStateLifecycleAware().value
+        LaunchedEffect(key1 = message.id) {
+            if (message.message.isNotEmpty())
+                snackbarHostState.showSnackbar(message = message.message)
+        }
         AppNavHost(
             navController = appState.navController,
             onBackClick = appState::onBackClick,
