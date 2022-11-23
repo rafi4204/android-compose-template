@@ -12,7 +12,10 @@ import com.monstarlab.core.ui.Icon
  */
 
 
-enum class TopLevelDestination(
+enum class Destination(
+    val isTopLevelDestination: Boolean,
+    val isBottomBarTab: Boolean,
+    val isTopBarTab: Boolean,
     val selectedIcon: Icon? = null,
     val unselectedIcon: Icon? = null,
     val iconTextId: Int? = null,
@@ -20,6 +23,9 @@ enum class TopLevelDestination(
     val route: String
 ) {
     HOME(
+        isTopLevelDestination = true,
+        isBottomBarTab = true,
+        isTopBarTab = true,
         selectedIcon = Icon.DrawableResourceIcon(AppIcons.Home),
         unselectedIcon = Icon.DrawableResourceIcon(AppIcons.HomeBorder),
         iconTextId = R.string.home,
@@ -27,6 +33,9 @@ enum class TopLevelDestination(
         route = homeNavigationRoute
     ),
     RESOURCES(
+        isTopLevelDestination = true,
+        isBottomBarTab = true,
+        isTopBarTab = true,
         selectedIcon = Icon.DrawableResourceIcon(AppIcons.Resources),
         unselectedIcon = Icon.DrawableResourceIcon(AppIcons.ResourcesBorder),
         iconTextId = R.string.resources,
@@ -34,8 +43,18 @@ enum class TopLevelDestination(
         route = resourcesNavigationRoute
     ),
     LOGIN(
+        isTopLevelDestination = true,
+        isBottomBarTab = false,
+        isTopBarTab = false,
         titleTextId = R.string.login,
         route = loginNavigationRoute
-    )
+    ),
 
+    RESOURCE_DETAILS(
+        isTopLevelDestination = false,
+        isBottomBarTab = false,
+        isTopBarTab = true,
+        titleTextId = R.string.resources,
+        route = resourceDetailsNavigationRoute
+    )
 }

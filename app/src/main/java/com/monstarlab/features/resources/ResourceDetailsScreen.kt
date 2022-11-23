@@ -8,12 +8,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.loadingFlow
 import coil.compose.rememberAsyncImagePainter
 import com.monstarlab.arch.extensions.collectAsStateLifecycleAware
 import com.monstarlab.core.domain.model.ResourceDetails
+import com.monstarlab.core.ui.CircularProgressBar
 
 
 @Composable
@@ -24,11 +25,14 @@ internal fun ResourceDetailsRoute(
     resourceId: String?
 ) {
     val resource = viewModel.resourceDetails.collectAsStateLifecycleAware().value
-    resourceId?.toInt()?.let { viewModel.getResourceDetails(it) }
-    ResourceDetailsScreen(resource, onBackClick)
-    LaunchedEffect(key1 = Unit ){
-
+    val isLoading = viewModel.loadingFlow.collectAsStateLifecycleAware().value
+    LaunchedEffect(key1 = Unit) {
+        resourceId?.toInt()?.let { viewModel.getResourceDetails(it) }
     }
+    if (isLoading) {
+        CircularProgressBar()
+    }
+    ResourceDetailsScreen(resource, onBackClick)
 }
 
 @Composable

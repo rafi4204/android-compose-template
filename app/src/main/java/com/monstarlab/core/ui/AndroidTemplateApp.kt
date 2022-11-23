@@ -22,7 +22,7 @@ import com.monstarlab.arch.extensions.collectAsStateLifecycleAware
 import com.monstarlab.core.navigation.AppNavHost
 import com.monstarlab.core.navigation.AppNavigationBar
 import com.monstarlab.core.navigation.AppNavigationBarItem
-import com.monstarlab.core.navigation.TopLevelDestination
+import com.monstarlab.core.navigation.Destination
 
 @OptIn(
     ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class,
@@ -48,8 +48,9 @@ fun AndroidTemplateApp(
                     .navigationBarsPadding()
             )
         },
+
         topBar = {
-            val destination = appState.currentTopLevelDestination
+            val destination = appState.currentDestination
             if (appState.shouldShowTopAppBar) {
                 AppTopAppBar(
                     modifier = Modifier.zIndex(-1F),
@@ -63,7 +64,8 @@ fun AndroidTemplateApp(
                     ),
                     onActionClick = { },
                     navigationIcon = Icons.Default.ArrowBack,
-                    navigationIconContentDescription = ""
+                    navigationIconContentDescription = "",
+                    onNavigationClick = { appState.onBackClick() }
 
                 )
             }
@@ -71,9 +73,9 @@ fun AndroidTemplateApp(
         bottomBar = {
             if (appState.shouldShowBottomBar) {
                 AppBottomBar(
-                    destinations = appState.topLevelDestinationWithBottomBars,
+                    destinations = appState.destinationWithBottomBars,
                     onNavigateToDestination = appState::navigateToTopLevelDestination,
-                    currentDestination = appState.currentDestination
+                    currentDestination = appState.currentDestinationAsState
                 )
             }
         }
@@ -98,8 +100,8 @@ fun AndroidTemplateApp(
 
 @Composable
 private fun AppBottomBar(
-    destinations: List<TopLevelDestination>,
-    onNavigateToDestination: (TopLevelDestination) -> Unit,
+    destinations: List<Destination>,
+    onNavigateToDestination: (Destination) -> Unit,
     currentDestination: NavDestination?
 ) {
     AppNavigationBar {
@@ -132,7 +134,7 @@ private fun AppBottomBar(
     }
 }
 
-private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: TopLevelDestination) =
+private fun NavDestination?.isTopLevelDestinationInHierarchy(destination: Destination) =
     this?.hierarchy?.any {
         it.route?.contains(destination.name, true) ?: false
     } ?: false

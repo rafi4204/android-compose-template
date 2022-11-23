@@ -10,17 +10,18 @@ import org.jetbrains.annotations.VisibleForTesting
 
 @VisibleForTesting
 internal const val resourceIdArg = "resourceId"
-internal const val resourceRoute = "resource_route"
+internal const val resourceDetailsRoute = "resource_details_route"
+internal const val resourceDetailsNavigationRoute = "$resourceDetailsRoute/{$resourceIdArg}"
 
 fun NavController.navigateToResourceDetails(resourceId: Int) {
-    this.navigate("$resourceRoute/$resourceId")
+    this.navigate("$resourceDetailsRoute/$resourceId")
 }
 
 fun NavGraphBuilder.resourceDetailsScreen(
     onBackClick: () -> Unit
 ) {
     composable(
-        route = "$resourceRoute/{$resourceIdArg}",
+        route = resourceDetailsNavigationRoute,
         arguments = listOf(
             navArgument(resourceIdArg) { type = NavType.StringType }
         )

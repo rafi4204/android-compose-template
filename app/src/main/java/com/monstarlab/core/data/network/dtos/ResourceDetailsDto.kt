@@ -1,5 +1,6 @@
 package com.monstarlab.core.data.network.dtos
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -8,8 +9,8 @@ data class ResourceDetailsDto(
     val id: Int,
     val name: String,
     val tagline: String,
-    @SerialName("image_url")
+    @SerializedName("image_url")
     val imageUrl: String,
-    @SerialName("first_brewed")
+    @SerializedName("first_brewed")
     val firstBrewed: String
 )
