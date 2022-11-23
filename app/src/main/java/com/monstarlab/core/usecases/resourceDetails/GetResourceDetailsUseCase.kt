@@ -9,11 +9,10 @@ import javax.inject.Inject
 
 class GetResourceDetailsUseCase @Inject constructor(
     private val resourceRepository: ResourceRepository,
-    private val appDatabase: AppDatabase,
     @IoDispatcher private val coroutineDispatcher: CoroutineDispatcher
 ) {
-    operator fun invoke() = useCaseFlow(coroutineDispatcher = coroutineDispatcher) {
-
+    operator fun invoke(id: Int) = useCaseFlow(coroutineDispatcher = coroutineDispatcher) {
+        resourceRepository.getResourcesDetails(id)
     }
 
 

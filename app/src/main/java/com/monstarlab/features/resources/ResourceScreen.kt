@@ -10,7 +10,6 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -29,14 +28,14 @@ import com.monstarlab.core.ui.CircularProgressBar
 internal fun ResourceRoute(
     modifier: Modifier = Modifier,
     viewModel: ResourceViewModel = hiltViewModel(),
-    navigateToDetails: (String) -> Unit
+    onItemClick: (Int) -> Unit
 ) {
     val resourceResult = viewModel.resourceResult.collectAsLazyPagingItems()
-    ResourceScreen(resourceResult)
+    ResourceScreen(resourceResult, onItemClick)
 }
 
 @Composable
-fun ResourceScreen(resourceResult: LazyPagingItems<Resource>) {
+fun ResourceScreen(resourceResult: LazyPagingItems<Resource>, onItemClick: (Int) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -50,7 +49,7 @@ fun ResourceScreen(resourceResult: LazyPagingItems<Resource>) {
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
             items(resourceResult) { item ->
-                ResourceItemView(item)
+                ResourceItemView(item, onItemClick)
             }
             resourceResult.apply {
                 when {
@@ -72,7 +71,7 @@ fun ResourceScreen(resourceResult: LazyPagingItems<Resource>) {
 }
 
 @Composable
-fun ResourceItemView(item: Resource?) {
+fun ResourceItemView(item: Resource?, onItemClick: (Int) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -84,14 +83,7 @@ fun ResourceItemView(item: Resource?) {
                     bounded = true
                 ),
                 onClick = {
-                    /* val bundle = Bundle()
-                     bundle.putSerializable(location, locationItem)
-                     navController.navigate(
-                         R.id.action_nearestLocationFragment_to_locationDirectionFragment,
-                         false,
-                         R.id.nearestLocationFragment,
-                         bundle
-                     )*/
+                    item?.id?.let { onItemClick(it) }
                 },
             ),
         backgroundColor = MaterialTheme.colorScheme.onPrimary,

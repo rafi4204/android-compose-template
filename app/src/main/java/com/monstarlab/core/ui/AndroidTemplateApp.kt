@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -16,6 +17,7 @@ import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.monstarlab.arch.extensions.snackErrorFlow
 import com.monstarlab.core.navigation.*
 
 @OptIn(
@@ -65,6 +67,9 @@ fun AndroidTemplateApp(
             }
         }
     ) { padding ->
+       /* LaunchedEffect(key1 = Unit) {
+            viewErrorFlow()
+        }*/
         AppNavHost(
             navController = appState.navController,
             onBackClick = appState::onBackClick,

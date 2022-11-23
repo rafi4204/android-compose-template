@@ -149,5 +149,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
     implementation "androidx.paging:paging-compose:${versions.paging_compose}"
     implementation "com.google.accompanist:accompanist-flowlayout:${versions.accompanist}"
+    implementation("io.coil-kt:coil-compose:2.2.2")
 
 }

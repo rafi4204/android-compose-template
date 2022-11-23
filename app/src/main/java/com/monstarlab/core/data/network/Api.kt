@@ -1,6 +1,7 @@
 package com.monstarlab.core.data.network
 
 import com.monstarlab.core.data.network.dtos.PostDto
+import com.monstarlab.core.data.network.dtos.ResourceDetailsDto
 import com.monstarlab.core.data.network.dtos.ResourceDto
 import com.monstarlab.core.data.network.responses.ResourcesResponse
 import com.monstarlab.core.data.network.responses.TokenResponse
@@ -28,6 +29,6 @@ interface Api {
     @GET("beers")
     suspend fun getResources(@Query("page") page: Int, @Query("per_page") limit: Int): Response<List<ResourceDto>>
 
-    @GET("beers")
-    suspend fun getResourcesDetails(@Path("id") id: Int): Response<Resource>
+    @GET("beers/{id}")
+    suspend fun getResourcesDetails(@Path("id") id: Int): Response<List<ResourceDetailsDto>>
 }

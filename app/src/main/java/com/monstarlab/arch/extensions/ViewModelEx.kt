@@ -5,12 +5,11 @@
 package androidx.lifecycle
 
 
-import com.monstarlab.arch.extensions.LoadingAware
-import com.monstarlab.arch.extensions.UseCaseResult
-import com.monstarlab.arch.extensions.ViewErrorAware
-import com.monstarlab.arch.extensions.onError
+import com.monstarlab.arch.extensions.*
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
+import com.monstarlab.core.ui.SnackbarManager
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -73,5 +72,6 @@ fun <F, T> Flow<UseCaseResult<F>>.bindError(t: T): Flow<UseCaseResult<F>> where 
     return this
         .onError {
             t.emitViewError(it.mapToViewError())
+        //    snackErrorFlow { it.mapToViewError() }
         }
 }

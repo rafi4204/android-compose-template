@@ -5,8 +5,10 @@ import androidx.paging.PagingData
 import com.monstarlab.arch.extensions.LoadingAware
 import com.monstarlab.arch.extensions.ViewErrorAware
 import com.monstarlab.arch.extensions.collectFlow
+import com.monstarlab.core.domain.model.ResourceDetails
 import com.monstarlab.core.pagination.model.Resource
 import com.monstarlab.core.sharedui.errorhandling.ViewError
+import com.monstarlab.core.usecases.resourceDetails.GetResourceDetailsUseCase
 import com.monstarlab.core.usecases.resources.GetResourcesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,15 +18,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResourceDetailsViewModel @Inject constructor(
-    private val getResourcesUseCase: GetResourcesUseCase
+    private val getResourceDetailsUseCase: GetResourceDetailsUseCase
 ) : ViewModel(), ViewErrorAware, LoadingAware {
-    var resourceResult = getResourcesUseCase()
+   val resourceDetails = MutableStateFlow(ResourceDetails(-1, "", ""))
 
-    //var resourceResult = getResourcesUseCase()
-    val loadingFlow = MutableStateFlow(false)
-    val errorFlow = MutableSharedFlow<ViewError>()
-
-
-
+    fun getResourceDetails(id: Int) {
+        collectFlow(getResourceDetailsUseCase(id)) {
+            resourceDetails.value = it
+        }
+    }
 
 }

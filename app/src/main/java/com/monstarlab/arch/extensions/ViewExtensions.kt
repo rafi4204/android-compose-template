@@ -1,6 +1,8 @@
 package com.monstarlab.arch.extensions
 
 import android.view.View
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material3.SnackbarHostState
 import androidx.core.view.isVisible
 import androidx.lifecycle.*
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +22,12 @@ fun LifecycleOwner.snackErrorFlow(
     collectFlow(targetFlow) { viewError ->
         Snackbar.make(root, viewError.message, length).show()
     }
+}
+
+fun snackErrorFlow(
+     action: (ViewError) -> Unit
+) {
+
 }
 
 fun LifecycleOwner.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {

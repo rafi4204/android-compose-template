@@ -21,7 +21,7 @@ fun AppNavHost(
         homeScreen()
         loginScreen(navigateToHome = { navController.navigateToHome() })
         resourcesGraph(
-            navigateToDetails = {},
+            onItemClick = { navController.navigateToResourceDetails(it) },
             nestedGraphs = {
                 resourceDetailsScreen(onBackClick)
             }

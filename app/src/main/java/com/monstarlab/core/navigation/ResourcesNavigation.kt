@@ -15,7 +15,7 @@ fun NavController.navigateToResourcesGraph(navOptions: NavOptions? = null) {
 }
 
 fun NavGraphBuilder.resourcesGraph(
-    navigateToDetails: (String) -> Unit,
+    onItemClick: (Int) -> Unit,
     nestedGraphs: NavGraphBuilder.() -> Unit
 ) {
     navigation(
@@ -23,7 +23,7 @@ fun NavGraphBuilder.resourcesGraph(
         startDestination = resourcesNavigationRoute
     ) {
         composable(route = resourcesNavigationRoute) {
-            ResourceRoute(navigateToDetails = navigateToDetails)
+            ResourceRoute(onItemClick = onItemClick)
         }
         nestedGraphs()
     }
