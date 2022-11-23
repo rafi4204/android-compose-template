@@ -1,4 +1,4 @@
-# Android jetpack compose template
+ # Android jetpack compose template  🚀🚀🚀🚀
 
 Jetpack compose starter project template with MVVM,hilt,paging3 with offline cache.Conditional bottom bar and top app bar added.
 
@@ -7,7 +7,11 @@ Core classes:
 ### Destination(app/src/main/java/com/monstarlab/core/navigation/Destination.kt): 
 All the destionation/screen will be added in this enum. Assingn the corresponding property value for each destination i.e `isTopBarTab`,`isBottomBarTab`,isTopLevelDestination` etc.
 
-
+### Demo:
+some demo screen have been added in the project to show how to create screen and navigation files related to that screen 
+###Login screen
+###Home screen
+###Resource screen
 
 
 ## Authors
