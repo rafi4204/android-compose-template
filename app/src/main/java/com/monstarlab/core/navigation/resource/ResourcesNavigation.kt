@@ -1,4 +1,4 @@
-package com.monstarlab.core.navigation
+package com.monstarlab.core.navigation.resource
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder

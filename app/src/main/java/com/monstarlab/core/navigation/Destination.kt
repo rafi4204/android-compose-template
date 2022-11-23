@@ -1,6 +1,10 @@
 package com.monstarlab.core.navigation
 
 import com.monstarlab.R
+import com.monstarlab.core.navigation.home.homeNavigationRoute
+import com.monstarlab.core.navigation.login.loginNavigationRoute
+import com.monstarlab.core.navigation.resource.resourceDetailsNavigationRoute
+import com.monstarlab.core.navigation.resource.resourcesNavigationRoute
 import com.monstarlab.core.ui.AppIcons
 import com.monstarlab.core.ui.Icon
 

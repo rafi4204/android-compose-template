@@ -12,6 +12,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.monstarlab.core.navigation.*
+import com.monstarlab.core.navigation.home.navigateToHome
+import com.monstarlab.core.navigation.login.navigateToLogin
+import com.monstarlab.core.navigation.resource.navigateToResourcesGraph
 import kotlinx.coroutines.CoroutineScope
 
 
