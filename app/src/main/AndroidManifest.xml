@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.monstarlab">
+    package="com.composetemplate">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".App"
+        android:name="com.composetemplate.App"
         android:allowBackup="true"
         android:fullBackupOnly="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,30 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Androidtemplate.Starting">
         <activity
-          android:name=".features.main.MainActivity"
-          android:exported="true">
+            android:name="com.composetemplate.features.main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- nstack app id and key from build.gradle manifest placeholder -->
-        <meta-data
-            android:name="dk.nodes.nstack.appId"
-            android:value="${appId}"
-            tools:replace="android:value" />
-        <meta-data
-            android:name="dk.nodes.nstack.apiKey"
-            android:value="${apiKey}"
-            tools:replace="android:value" />
-
-        <meta-data
-            android:name="dk.nodes.nstack.env"
-            android:value="${env}"
-            tools:replace="android:value" />
-
     </application>
 
 </manifest>
