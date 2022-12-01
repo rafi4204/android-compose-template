@@ -1,4 +1,4 @@
- # Android jetpack compose template  🚀🚀🚀🚀
+ # Android Jetpack Compose Template  🚀🚀🚀🚀
 
 Jetpack Compose starter project template with MVVM,Hilt,Paging3 with offline cache.Conditional bottom bar and top app bar added.
 
