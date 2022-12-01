@@ -1,4 +1,4 @@
-package com.monstarlab.core.ui
+package com.monstarlab.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

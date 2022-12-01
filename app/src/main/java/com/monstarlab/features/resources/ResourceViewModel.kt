@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResourceViewModel @Inject constructor(
-    private val getResourcesUseCase: GetResourcesUseCase
+    getResourcesUseCase: GetResourcesUseCase
 ) : ViewModel(), ViewErrorAware, LoadingAware {
     var resourceResult = getResourcesUseCase()
 

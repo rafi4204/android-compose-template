@@ -5,6 +5,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.30'
     id 'dk.nstack.translation.plugin'
     id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
 }
 
 translation {

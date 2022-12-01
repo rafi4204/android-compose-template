@@ -28,6 +28,7 @@ internal fun ResourceDetailsRoute(
     val isLoading = viewModel.loadingFlow.collectAsStateLifecycleAware().value
     LaunchedEffect(key1 = Unit) {
         resourceId?.toInt()?.let { viewModel.getResourceDetails(it) }
+       // Timber.tag("ResourceDetails!!").d(resourceDetails.name)
     }
     if (isLoading) {
         CircularProgressBar()

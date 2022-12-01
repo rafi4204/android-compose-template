@@ -15,11 +15,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.monstarlab.R
+import com.monstarlab.core.domain.model.ResourceDetails
 import com.monstarlab.core.pagination.model.Resource
 import com.monstarlab.core.ui.CircularProgressBar
 
@@ -28,14 +30,19 @@ import com.monstarlab.core.ui.CircularProgressBar
 internal fun ResourceRoute(
     modifier: Modifier = Modifier,
     viewModel: ResourceViewModel = hiltViewModel(),
-    onItemClick: (Int) -> Unit
+    onItemClick: (Int) -> Unit,
+    navController: NavController
 ) {
     val resourceResult = viewModel.resourceResult.collectAsLazyPagingItems()
-    ResourceScreen(resourceResult, onItemClick)
+    ResourceScreen(resourceResult, onItemClick, navController)
 }
 
 @Composable
-fun ResourceScreen(resourceResult: LazyPagingItems<Resource>, onItemClick: (Int) -> Unit) {
+fun ResourceScreen(
+    resourceResult: LazyPagingItems<Resource>,
+    onItemClick: (Int) -> Unit,
+    navController: NavController
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -49,7 +56,7 @@ fun ResourceScreen(resourceResult: LazyPagingItems<Resource>, onItemClick: (Int)
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
             items(resourceResult) { item ->
-                ResourceItemView(item, onItemClick)
+                ResourceItemView(item, onItemClick, navController)
             }
             resourceResult.apply {
                 when {
@@ -71,7 +78,7 @@ fun ResourceScreen(resourceResult: LazyPagingItems<Resource>, onItemClick: (Int)
 }
 
 @Composable
-fun ResourceItemView(item: Resource?, onItemClick: (Int) -> Unit) {
+fun ResourceItemView(item: Resource?, onItemClick: (Int) -> Unit, navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -83,6 +90,10 @@ fun ResourceItemView(item: Resource?, onItemClick: (Int) -> Unit) {
                     bounded = true
                 ),
                 onClick = {
+                    navController.currentBackStackEntry?.savedStateHandle?.set(
+                        key = "resourceDetails",
+                        value = item?.id?.let { ResourceDetails(it, item.name, "") }
+                    )
                     item?.id?.let { onItemClick(it) }
                 },
             ),

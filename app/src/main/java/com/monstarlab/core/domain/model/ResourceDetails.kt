@@ -1,10 +1,12 @@
 package com.monstarlab.core.domain.model
 
-import kotlinx.serialization.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-@Serializable
+
+@Parcelize
 data class ResourceDetails(
     val id: Int,
     val name: String,
     val imageUrl: String
-)
+) : Parcelable

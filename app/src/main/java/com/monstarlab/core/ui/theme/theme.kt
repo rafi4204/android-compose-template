@@ -7,6 +7,38 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.monstarlab.core.ui.theme.Blue10
+import com.monstarlab.core.ui.theme.Blue20
+import com.monstarlab.core.ui.theme.Blue30
+import com.monstarlab.core.ui.theme.Blue40
+import com.monstarlab.core.ui.theme.Blue80
+import com.monstarlab.core.ui.theme.Blue90
+import com.monstarlab.core.ui.theme.DarkPurpleGray10
+import com.monstarlab.core.ui.theme.DarkPurpleGray90
+import com.monstarlab.core.ui.theme.DarkPurpleGray99
+import com.monstarlab.core.ui.theme.Orange10
+import com.monstarlab.core.ui.theme.Orange20
+import com.monstarlab.core.ui.theme.Orange30
+import com.monstarlab.core.ui.theme.Orange40
+import com.monstarlab.core.ui.theme.Orange80
+import com.monstarlab.core.ui.theme.Orange90
+import com.monstarlab.core.ui.theme.Purple10
+import com.monstarlab.core.ui.theme.Purple20
+import com.monstarlab.core.ui.theme.Purple30
+import com.monstarlab.core.ui.theme.Purple40
+import com.monstarlab.core.ui.theme.Purple80
+import com.monstarlab.core.ui.theme.Purple90
+import com.monstarlab.core.ui.theme.PurpleGray30
+import com.monstarlab.core.ui.theme.PurpleGray50
+import com.monstarlab.core.ui.theme.PurpleGray60
+import com.monstarlab.core.ui.theme.PurpleGray80
+import com.monstarlab.core.ui.theme.PurpleGray90
+import com.monstarlab.core.ui.theme.Red10
+import com.monstarlab.core.ui.theme.Red20
+import com.monstarlab.core.ui.theme.Red30
+import com.monstarlab.core.ui.theme.Red40
+import com.monstarlab.core.ui.theme.Red80
+import com.monstarlab.core.ui.theme.Red90
 
 /**
  * Light default theme color scheme
