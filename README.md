@@ -9,9 +9,9 @@ All the destionation/screen will be added in this enum. Assingn the correspondin
 
 ### Demo:
 some demo screen have been added in the project to show how to create screen and navigation files related to that screen 
-###Login screen
-###Home screen
-###Resource screen
+### Login screen
+### Home screen
+### Resource screen
 
 
 ## Authors
