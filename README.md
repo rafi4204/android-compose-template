@@ -5,7 +5,7 @@ Jetpack Compose starter project template with MVVM,Hilt,Paging3 with offline cac
 ## Description
 Core classes:
 ### Destination(app/src/main/java/com/monstarlab/core/navigation/Destination.kt): 
-All the destionation/screen will be added in this enum. Assingn the corresponding property value for each destination i.e `isTopBarTab`,`isBottomBarTab`,isTopLevelDestination` etc.
+All the destionation/screen will be added in this enum. Assingn the corresponding property value for each destination i.e `isTopBarTab`,`isBottomBarTab`,`isTopLevelDestination` etc.
 
 ### Demo:
 some demo screen have been added in the project to show how to create screen and navigation files related to that screen 
