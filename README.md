@@ -8,10 +8,10 @@ Core classes:
 All the destionation/screen will be added in this enum. Assingn the corresponding property value for each destination i.e `isTopBarTab`,`isBottomBarTab`,`isTopLevelDestination` etc.
 
 ### Demo:
-some demo screen have been added in the project to show how to create screen and navigation files related to that screen 
-### Login screen
-### Home screen
-### Resource screen
+some demo screen have been added in the project to show how to create screen and navigation files related to that screen.Follwing screen have been added: 
+#### Login screen 
+#### Home screen 
+#### Resource screen
 
 
 ## Authors
