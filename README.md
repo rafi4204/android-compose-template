@@ -27,5 +27,5 @@ Muhammad Bin Farook(Rafi)
 
 ## License
 
-This project is licensed under the [Android-compose-template] License - see the LICENSE.md file for details
+This project is licensed under the [Android-compose-template] License - see the [LICENSE.md](https://github.com/rafi4204/android-compose-template/blob/master/LICENSE.md) file for details
 
