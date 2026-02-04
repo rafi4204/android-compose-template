@@ -3,24 +3,13 @@ package com.composetemplate.arch.extensions
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.*
-import com.google.android.material.snackbar.Snackbar
-import com.composetemplate.core.sharedui.errorhandling.ViewError
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
-
-fun LifecycleOwner.snackErrorFlow(
-    targetFlow: SharedFlow<ViewError>,
-    root: View,
-    length: Int = Snackbar.LENGTH_SHORT
-) {
-    collectFlow(targetFlow) { viewError ->
-        Snackbar.make(root, viewError.message, length).show()
-    }
-}
 
 
 fun LifecycleOwner.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
@@ -38,11 +27,12 @@ inline fun <T> LifecycleOwner.collectFlow(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     crossinline collectBlock: (T) -> Unit
 ) {
-    this.lifecycleScope.launchWhenStarted {
-        targetFlow.flowWithLifecycle(this@collectFlow.lifecycle, minActiveState)
-            .collect {
+    this.lifecycleScope.launch {
+       lifecycle.repeatOnLifecycle(minActiveState) {
+            targetFlow.collect {
                 collectBlock(it)
             }
+        }
     }
 }
 

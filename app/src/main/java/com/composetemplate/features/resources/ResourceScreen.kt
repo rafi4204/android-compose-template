@@ -2,13 +2,20 @@ package com.composetemplate.features.resources
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -19,7 +26,6 @@ import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.items
 import com.composetemplate.core.domain.model.ResourceDetails
 import com.composetemplate.core.pagination.model.Resource
 import com.composetemplate.core.ui.CircularProgressBar
@@ -54,8 +60,11 @@ fun ResourceScreen(
                 .systemBarsPadding(),
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
-            items(resourceResult) { item ->
-                ResourceItemView(item, onItemClick, navController)
+            items(resourceResult.itemCount) { index ->
+                val item = resourceResult[index]
+                if(item!=null) {
+                    ResourceItemView(item, onItemClick, navController)
+                }
             }
             resourceResult.apply {
                 when {
@@ -84,21 +93,28 @@ fun ResourceItemView(item: Resource?, onItemClick: (Int) -> Unit, navController:
             .padding(bottom = 10.dp)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple(
+                indication = ripple(
                     color = MaterialTheme.colorScheme.secondary,
                     bounded = true
                 ),
                 onClick = {
                     navController.currentBackStackEntry?.savedStateHandle?.set(
                         key = "resourceDetails",
-                        value = item?.id?.let { ResourceDetails(it, item.name, "") }
+                        value = item?.id?.let { ResourceDetails(it, item.name, item.url,"") }
                     )
                     item?.id?.let { onItemClick(it) }
                 },
             ),
-        backgroundColor = MaterialTheme.colorScheme.onPrimary,
+        colors = CardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            disabledContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.12f),
+            disabledContentColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+        ),
         shape = RoundedCornerShape(20.dp),
-        elevation = 8.dp,
+        elevation = CardDefaults.cardElevation(
+            defaultElevation = 10.dp
+        ),
     ) {
         Column(modifier = Modifier.padding(10.dp)) {
             if (item != null) {

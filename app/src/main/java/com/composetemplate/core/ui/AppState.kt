@@ -81,7 +81,9 @@ class AppState(
             Destination.RESOURCES -> navController.navigateToResourcesGraph(
                 topLevelNavOptions
             )
+
             Destination.LOGIN -> navController.navigateToLogin(topLevelNavOptions)
+            else -> {}
         }
 
     }

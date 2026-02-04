@@ -32,6 +32,6 @@ fun NavGraphBuilder.resourceDetailsScreen(
         val resourceDetails =
             navController.previousBackStackEntry?.savedStateHandle?.get<ResourceDetails>("resourceDetails")
         Timber.tag("resource!!").d(resourceDetails?.name)
-        ResourceDetailsRoute(resourceId = resourceId, onBackClick = onBackClick)
+        ResourceDetailsRoute(resourceUrl = resourceDetails?.url, onBackClick = onBackClick)
     }
 }

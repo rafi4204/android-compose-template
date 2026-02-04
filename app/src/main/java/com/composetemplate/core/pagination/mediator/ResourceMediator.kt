@@ -12,6 +12,7 @@ import com.composetemplate.core.pagination.db.AppDatabase
 import retrofit2.HttpException
 import java.io.IOException
 import java.io.InvalidObjectException
+import kotlin.random.Random
 
 @ExperimentalPagingApi
 class ResourceMediator(
@@ -20,7 +21,7 @@ class ResourceMediator(
 ) :
     RemoteMediator<Int, Resource>() {
     companion object {
-        const val DEFAULT_PAGE_INDEX = 2
+        const val DEFAULT_PAGE_INDEX = 0
         const val DEFAULT_PAGE_SIZE = 10
     }
 
@@ -28,8 +29,7 @@ class ResourceMediator(
         loadType: LoadType, state: PagingState<Int, Resource>
     ): MediatorResult {
 
-        val pageKeyData = getKeyPageData(loadType, state)
-        val page = when (pageKeyData) {
+        val page = when (val pageKeyData = getKeyPageData(loadType, state)) {
             is MediatorResult.Success -> {
                 return pageKeyData
             }
@@ -50,7 +50,7 @@ class ResourceMediator(
                 val prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1
                 val nextKey = if (isEndOfList) null else page + 1
                 val keys = response.map {
-                    RemoteKeys(repoId = it.id.toString(), prevKey = prevKey, nextKey = nextKey)
+                    RemoteKeys(repoId = Random.nextInt().toString(), prevKey = prevKey, nextKey = nextKey)
                 }
                 appDatabase.getRepoDao().insertAll(keys)
                 appDatabase.getResourceDao().insertAll(response)
@@ -66,7 +66,7 @@ class ResourceMediator(
     /**
      * this returns the page key or the final end of list success result
      */
-    suspend fun getKeyPageData(loadType: LoadType, state: PagingState<Int, Resource>): Any? {
+    private suspend fun getKeyPageData(loadType: LoadType, state: PagingState<Int, Resource>): Any {
         return when (loadType) {
             LoadType.REFRESH -> {
                 val remoteKeys = getClosestRemoteKey(state)
@@ -76,9 +76,7 @@ class ResourceMediator(
                 val remoteKeys = getLastRemoteKey(state)
                 if (remoteKeys == null)
                     DEFAULT_PAGE_INDEX
-                else if (remoteKeys.nextKey == null)
-                    throw InvalidObjectException("Remote key should not be null for $loadType")
-                else remoteKeys.nextKey
+                else remoteKeys.nextKey ?: throw InvalidObjectException("Remote key should not be null for $loadType")
             }
             LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
         }

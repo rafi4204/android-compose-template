@@ -10,8 +10,8 @@ class GetResourceDetailsUseCase @Inject constructor(
     private val resourceRepository: ResourceRepository,
     @IoDispatcher private val coroutineDispatcher: CoroutineDispatcher
 ) {
-    operator fun invoke(id: Int) = useCaseFlow(coroutineDispatcher = coroutineDispatcher) {
-        resourceRepository.getResourcesDetails(id)
+    operator fun invoke(url: String) = useCaseFlow(coroutineDispatcher = coroutineDispatcher) {
+        resourceRepository.getResourcesDetails(url)
     }
 
 

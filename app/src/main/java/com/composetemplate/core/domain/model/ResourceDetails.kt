@@ -8,5 +8,6 @@ import kotlinx.parcelize.Parcelize
 data class ResourceDetails(
     val id: Int,
     val name: String,
+    val url: String? = "",
     val imageUrl: String
 ) : Parcelable

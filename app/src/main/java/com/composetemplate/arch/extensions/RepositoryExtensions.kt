@@ -8,9 +8,10 @@ inline fun <T> repoCall(
 ): T {
     val response = block()
     val body = response.body()
-    return when (response.isSuccessful && body != null) {
-        true -> body
-        false -> throw response.toException()
+    if (response.isSuccessful && body != null) {
+        return body
+    } else {
+        throw response.toException()
     }
 }
 

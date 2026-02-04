@@ -6,6 +6,6 @@ fun ResourceDetailsDto.toEntity(): ResourceDetails {
     return ResourceDetails(
         id = id,
         name = name,
-        imageUrl = imageUrl
+        imageUrl = sprites.imageUrl ?: ""
     )
 }

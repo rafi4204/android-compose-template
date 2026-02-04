@@ -64,11 +64,11 @@ OLD_PACKAGE=""
 
 # Path segments
 FIRST_PACKAGE_SEGMENT="com"
-SECOND_PACKAGE_SEGMENT="monstarlab"
+SECOND_PACKAGE_SEGMENT="composetemplate"
 
 OLD_APPNAME="android-template"
 OLD_NAME="android-template"
-OLD_PACKAGE="com.monstarlab"
+OLD_PACKAGE="com.composetemplate"
 
 if [ -z "$packagename" ] ; then
     usage "No new package provided"
@@ -163,10 +163,10 @@ echo "=> 🔎 Replacing app name in strings.xml and build.gradle ..."
 if [[ "$OSTYPE" == "darwin"* ]] # Mac OSX
 then
   sed -i "" -e "s/$OLD_APPNAME/$appname/" "$WORKING_DIR/$NAME_NO_SPACES/app/src/main/res/values/strings.xml"
-  sed -i "" -e "s/Monstarlab/$appname/" "$WORKING_DIR/$NAME_NO_SPACES/app/build.gradle"
+  sed -i "" -e "s/ComposeTemplate/$appname/" "$WORKING_DIR/$NAME_NO_SPACES/app/build.gradle"
 else
   sed -i -e "s/$OLD_APPNAME/$appname/" "$WORKING_DIR/$NAME_NO_SPACES/app/src/main/res/values/strings.xml"
-  sed -i -e "s/Monstarlab/$appname/" "$WORKING_DIR/$NAME_NO_SPACES/app/build.gradle"
+  sed -i -e "s/ComposeTemplate/$appname/" "$WORKING_DIR/$NAME_NO_SPACES/app/build.gradle"
 fi
 echo "✅  Completed"
 

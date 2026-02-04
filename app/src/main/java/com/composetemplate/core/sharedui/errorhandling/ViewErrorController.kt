@@ -1,9 +1,7 @@
 package com.composetemplate.core.sharedui.errorhandling
 
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import com.composetemplate.core.domain.error.ExceptionModel
 import javax.inject.Inject
 
@@ -27,26 +25,6 @@ fun Fragment.showErrorDialog(
         val dialog = builder.show()
         dialog.setCancelable(cancelable)
         dialog.setCanceledOnTouchOutside(cancelable)
-    }
-}
-
-fun Fragment.showErrorSnackbar(
-    view: View,
-    error: ViewError,
-    showAction: Boolean = false,
-    dismissAction: (() -> Unit)? = null,
-) {
-    val showLength = if (showAction) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
-    val snackbar = Snackbar.make(view, error.message, showLength)
-    if (showAction) {
-        snackbar.setAction("Ok") {
-            ViewErrorController.isShowingError = false
-            dismissAction?.invoke()
-        }
-    }
-    if (!ViewErrorController.isShowingError) {
-        ViewErrorController.isShowingError = true
-        snackbar.show()
     }
 }
 

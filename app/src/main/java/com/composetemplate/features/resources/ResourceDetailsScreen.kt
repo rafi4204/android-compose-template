@@ -22,12 +22,12 @@ internal fun ResourceDetailsRoute(
     modifier: Modifier = Modifier,
     viewModel: ResourceDetailsViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
-    resourceId: String?
+    resourceUrl: String?
 ) {
     val resource = viewModel.resourceDetails.collectAsStateLifecycleAware().value
     val isLoading = viewModel.loadingFlow.collectAsStateLifecycleAware().value
     LaunchedEffect(key1 = Unit) {
-        resourceId?.toInt()?.let { viewModel.getResourceDetails(it) }
+        resourceUrl?.let { viewModel.getResourceDetails(it) }
        // Timber.tag("ResourceDetails!!").d(resourceDetails.name)
     }
     if (isLoading) {

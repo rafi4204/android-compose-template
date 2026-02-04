@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Resource(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val name: String
+    val name: String,
+    val url: String
 
 )

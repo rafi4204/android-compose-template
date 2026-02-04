@@ -10,7 +10,7 @@ import com.composetemplate.core.pagination.dao.RemoteKeysDao
 import com.composetemplate.core.pagination.dao.ResourceDao
 
 
-@Database(version = 1, entities = [Resource::class, RemoteKeys::class])
+@Database(version = 2, entities = [Resource::class, RemoteKeys::class])
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getRepoDao(): RemoteKeysDao
@@ -31,6 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, RESOURCE_DB)
+                .fallbackToDestructiveMigration()
                 .build()
     }
 

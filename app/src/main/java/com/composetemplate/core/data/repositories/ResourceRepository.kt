@@ -14,15 +14,13 @@ class ResourceRepository @Inject constructor(
 
     suspend fun getResources(page: Int, pageSize: Int): List<Resource> {
         return api.getResources(page, pageSize)
-            .mapSuccess { response -> response.map { it.toEntity() } }
+            .mapSuccess { response -> response.results.map { it.toEntity() } }
     }
 
-    suspend fun getResourcesDetails(id: Int): ResourceDetails {
-        return api.getResourcesDetails(id)
+    suspend fun getResourcesDetails(url: String): ResourceDetails {
+        return api.getResourcesDetails(url)
             .mapSuccess {
-                it[0].toEntity()
+                it.toEntity()
             }
     }
-
-
 }

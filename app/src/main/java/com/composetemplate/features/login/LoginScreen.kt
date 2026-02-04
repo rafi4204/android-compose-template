@@ -11,6 +11,7 @@ import com.composetemplate.arch.extensions.collectAsStateLifecycleAware
 import com.composetemplate.core.ui.AppBackground
 import com.composetemplate.core.ui.AppButton
 import com.composetemplate.core.ui.InputTextField
+import com.composetemplate.core.ui.InputTextFieldType
 
 
 @Composable
@@ -44,11 +45,19 @@ fun LoginScreen(
         verticalArrangement = Arrangement.Center
     ) {
 
-        InputTextField(text = loginUiInfo.userName) {
+        InputTextField(
+            text = loginUiInfo.userName,
+            label = "name",
+            type = InputTextFieldType.Outlined
+        ) {
             onUserNameChanged(it)
         }
         Spacer(modifier = Modifier.height(10.dp))
-        InputTextField(text = loginUiInfo.password) {
+        InputTextField(
+            text = loginUiInfo.password,
+            label = "password",
+            type = InputTextFieldType.Outlined
+        ) {
             onPasswordChanged(it)
         }
         Spacer(modifier = Modifier.height(20.dp))

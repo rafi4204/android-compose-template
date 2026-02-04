@@ -7,9 +7,12 @@ import kotlinx.serialization.Serializable
 data class ResourceDetailsDto(
     val id: Int,
     val name: String,
-    val tagline: String,
-    @SerializedName("image_url")
-    val imageUrl: String,
-    @SerializedName("first_brewed")
-    val firstBrewed: String
+    @SerializedName("sprites")
+    val sprites: SpritesDto
+)
+
+@Serializable
+data class SpritesDto(
+    @SerializedName("back_default")
+    val imageUrl: String?,
 )

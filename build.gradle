@@ -2,43 +2,43 @@
 buildscript {
 
     ext.versions = [
-            kotlin_plugin          : '1.6.21',
-            kotlin                 : '1.6.21',
-            appcompat              : '1.4.1',
-            coroutines             : '1.6.1',
-            json                   : '1.0.1',
-            constraint_layout      : '2.1.3',
-            hilt                   : '2.40.5',
-            lifecycle              : '2.4.1',
-            timber                 : "5.0.1",
-            junit                  : '4.13.2',
-            junit_ext              : '1.1.3',
-            espresso               : '3.4.0',
-            mockito                : '3.3.3',
-            nodes_arch             : '2.3.5',
-            retrofit               : '2.9.0',
-            retrofit_converter     : '0.8.0',
-            okhttp                 : '4.9.1',
-            ktx_core               : '1.7.0',
-            ktx                    : '1.7.0',
-            material               : '1.6.0',
-            archCore               : '2.1.0',
-            navigation             : '2.4.2',
-            nodes_utils            : '1.0.0',
-            nodes_utils_okhttp     : '0.12.2',
-            preferences            : '1.1.1',
-            chucker                : '3.3.0',
-            leak_canary            : '2.5',
-            desugaring             : '1.0.9',
-            datastore              : '1.0.0',
-            compose                : '1.2.0-beta02',
-            material3              : '1.0.1',
-            splash_screen          : '1.0.0',
-            hilt_navigation_compose: '1.0.0',
-            room                   : '2.4.3',
-            paging_compose         : '1.0.0-alpha17',
-            accompanist            : '0.24.9-beta',
-            accompanist_permission : '0.20.2',
+            kotlin_plugin          : '1.9.22',
+            kotlin                 : '1.9.22',
+            appcompat             : '1.6.1',
+            coroutines            : '1.7.3',
+            json                  : '1.6.3',
+            constraint_layout     : '2.1.4',
+            hilt                  : '2.49',
+            lifecycle             : '2.7.0',
+            timber                : '5.0.1',
+            junit                 : '4.13.2',
+            junit_ext            : '1.1.5',
+            espresso             : '3.5.1',
+            mockito              : '5.10.0',
+            nodes_arch           : '2.3.5',
+            retrofit             : '2.9.0',
+            retrofit_converter   : '1.0.0',
+            okhttp               : '4.12.0',
+            ktx_core            : '1.12.0',
+            ktx                 : '1.12.0',
+            material            : '1.11.0',
+            archCore            : '2.2.0',
+            navigation          : '2.7.7',
+            nodes_utils         : '1.0.0',
+            nodes_utils_okhttp  : '0.12.2',
+            preferences         : '1.2.1',
+            chucker             : '4.0.0',
+            leak_canary         : '2.13',
+            desugaring          : '2.0.4',
+            datastore           : '1.0.0',
+            compose             : '1.6.2',
+            material3           : '1.3.1',
+            splash_screen       : '1.0.1',
+            hilt_navigation_compose: '1.2.0',
+            room                : '2.6.1',
+            paging_compose      : '3.3.0-alpha02',
+            accompanist         : '0.32.0',
+            accompanist_permission : '0.32.0',
     ]
 
     ext.keys = [
@@ -48,11 +48,12 @@ buildscript {
     ]
 
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:8.6.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_plugin}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
         // NOTE: Do not place your application dependencies here; they belong
@@ -61,7 +62,9 @@ buildscript {
 }
 
 plugins {
-    id "com.diffplug.spotless" version "5.9.0"
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.22' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+    id 'com.diffplug.spotless' version '6.23.3'
 }
 
 allprojects {

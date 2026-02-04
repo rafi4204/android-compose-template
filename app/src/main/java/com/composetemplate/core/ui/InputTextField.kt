@@ -4,37 +4,42 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.SendToMobile
-import androidx.compose.material3.*
+import androidx.compose.material.icons.automirrored.filled.Send
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 
-
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputTextField(
-    modifier: Modifier = Modifier,
     text: String,
-    searchQuery: () -> Unit = {},
-    label: String = stringResource(com.composetemplate.R.string.label),
-    icon: ImageVector = Icons.Default.Email,
-    keyboardType: KeyboardType = KeyboardType.Text,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    imeAction: ImeAction = ImeAction.Done,
+    label: String = "",
+    type: InputTextFieldType = InputTextFieldType.Classic,
+    icon: ImageVector = Icons.AutoMirrored.Filled.Send,
     enabled: Boolean = true,
-    maxLine: Int = 3,
-    type: InputTextFieldType = InputTextFieldType.WithIcon,
+    maxLine: Int = 1,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    imeAction: ImeAction = ImeAction.Done,
+    keyboardActions: KeyboardActions = KeyboardActions(),
+    modifier: Modifier = Modifier,
+    searchQuery: () -> Unit = {},
     onValueChange: (String) -> Unit
 ) {
     when (type) {
         InputTextFieldType.Classic -> TextField(
             value = text,
+            onValueChange = onValueChange,
             label = { Text(text = label) },
             enabled = enabled,
             modifier = modifier.fillMaxWidth(),
@@ -42,14 +47,17 @@ fun InputTextField(
                 keyboardType = keyboardType,
                 imeAction = imeAction
             ),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedLabelColor = MaterialTheme.colorScheme.onSurface
+            colors = TextFieldDefaults.colors(
+                focusedContainerColor = MaterialTheme.colorScheme.surface,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                unfocusedIndicatorColor = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
             ),
-            onValueChange = onValueChange,
             shape = MaterialTheme.shapes.extraSmall,
             placeholder = { Text(text = label) },
             maxLines = maxLine
         )
+
         InputTextFieldType.Outlined -> OutlinedTextField(
             value = text,
             onValueChange = onValueChange,
@@ -61,9 +69,11 @@ fun InputTextField(
                 imeAction = imeAction
             ),
             enabled = enabled,
+            colors = OutlinedTextFieldDefaults.colors(),
             shape = MaterialTheme.shapes.small,
             maxLines = maxLine
         )
+
         InputTextFieldType.WithIcon -> OutlinedTextField(
             value = text,
             onValueChange = onValueChange,
@@ -72,6 +82,7 @@ fun InputTextField(
                 Icon(
                     imageVector = icon,
                     contentDescription = "Icon",
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             },
             label = { Text(label) },
@@ -80,23 +91,22 @@ fun InputTextField(
                 keyboardType = keyboardType,
                 imeAction = imeAction
             ),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = MaterialTheme.colorScheme.onSurface,
-                focusedLabelColor = MaterialTheme.colorScheme.onSurface
-            ),
+            colors = OutlinedTextFieldDefaults.colors(),
             enabled = enabled,
             shape = MaterialTheme.shapes.small,
             maxLines = maxLine
         )
+
         InputTextFieldType.IconClickable -> OutlinedTextField(
             value = text,
             onValueChange = onValueChange,
             modifier = modifier.fillMaxWidth(),
             leadingIcon = {
-                androidx.compose.material.IconButton(onClick = searchQuery) {
+                IconButton(onClick = searchQuery) {
                     Icon(
                         imageVector = icon,
                         contentDescription = "Icon",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             },
@@ -106,10 +116,7 @@ fun InputTextField(
                 keyboardType = keyboardType,
                 imeAction = imeAction
             ),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = MaterialTheme.colorScheme.onSurface,
-                focusedLabelColor = MaterialTheme.colorScheme.onSurface
-            ),
+            colors = OutlinedTextFieldDefaults.colors(),
             enabled = enabled,
             shape = MaterialTheme.shapes.small,
             maxLines = maxLine
@@ -140,7 +147,7 @@ fun PreviewWithIconTextField() {
         InputTextField(
             text = "With Icon",
             type = InputTextFieldType.WithIcon,
-            icon = Icons.Default.SendToMobile
+            icon = Icons.AutoMirrored.Filled.Send
         ) {}
     }
 }

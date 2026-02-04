@@ -90,7 +90,6 @@ fun AndroidTemplateApp(
             onBackClick = appState::onBackClick,
             modifier = Modifier
                 .padding(padding)
-                .consumedWindowInsets(padding)
                 .systemBarsPadding()
                 .statusBarsPadding()
                 .navigationBarsPadding()
@@ -126,6 +125,8 @@ private fun AppBottomBar(
                             painter = painterResource(id = icon.id),
                             contentDescription = null
                         )
+
+                        else -> {}
                     }
                 },
                 label = { Text(stringResource(destination.iconTextId ?: -1)) }

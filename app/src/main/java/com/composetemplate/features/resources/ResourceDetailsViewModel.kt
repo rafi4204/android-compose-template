@@ -14,10 +14,10 @@ import javax.inject.Inject
 class ResourceDetailsViewModel @Inject constructor(
     private val getResourceDetailsUseCase: GetResourceDetailsUseCase
 ) : ViewModel(), ViewErrorAware, LoadingAware {
-   val resourceDetails = MutableStateFlow(ResourceDetails(-1, "", ""))
+   val resourceDetails = MutableStateFlow(ResourceDetails(-1, "", "",""))
 
-    fun getResourceDetails(id: Int) {
-        collectFlow(getResourceDetailsUseCase(id)) {
+    fun getResourceDetails(url: String) {
+        collectFlow(getResourceDetailsUseCase(url)) {
             resourceDetails.value = it
         }
     }
