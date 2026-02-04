@@ -3,7 +3,6 @@
 [![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.6.x-blue.svg?logo=jetpack-compose)](https://developer.android.com/jetpack/compose)
 [![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=24)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](license.md)
-[![Build Status](https://github.com/your-username/android-compose-template/actions/workflows/android.yml/badge.svg)](https://github.com/your-username/android-compose-template/actions)
 
 # Android Compose Template
 
@@ -88,7 +87,11 @@ To use this template for your own project, follow these steps:
 5.  **Start Building**:
     - You are now ready to build your app on top of this template. Begin by adding your own features and modifying the existing modules.
 
-**Note on Badges**: Remember to update the `Build Status` badge with your own GitHub username and repository name after setting up a CI workflow.
+## Contributing
+
+Contributions are always welcome! This project follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification, and a PR template is provided to guide you.
+
+Please feel free to open an issue or submit a pull request.
 
 ## License
 
