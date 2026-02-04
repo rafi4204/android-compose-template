@@ -1,31 +1,88 @@
- # Android Jetpack Compose Template  🚀🚀🚀🚀
+# Android Compose Template
 
-Jetpack Compose starter project template with MVVM,Hilt,Paging3 with offline cache.Conditional bottom bar and top app bar added.
+An opinionated, production-ready template for modern Android applications.
 
-## Description
-Core classes:
-### Destination(app/src/main/java/com/monstarlab/core/navigation/Destination.kt): 
-All the destionation/screen will be added in this enum. Assingn the corresponding property value for each destination i.e `isTopBarTab`,`isBottomBarTab`,`isTopLevelDestination` etc.
+This project serves as a comprehensive blueprint for building scalable and maintainable Android apps using 100% Kotlin, Jetpack Compose, and a cutting-edge tech stack. It's designed to help developers kickstart new projects with a solid architectural foundation.
 
-### Demo:
-some demo screen have been added in the project to show how to create screen and navigation files related to that screen.Follwing screen have been added: 
-#### Login screen 
-#### Home screen 
-#### Resource screen
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+## Features
 
-## Authors
+- **100% Kotlin**: Written entirely in Kotlin, embracing modern language features.
+- **Modern UI Toolkit**: Built with Jetpack Compose for a declarative and reactive UI.
+- **Solid Architecture**: Implements MVVM with Clean Architecture principles.
+- **Dependency Injection**: Pre-configured with Hilt for robust dependency management.
+- **Asynchronous Programming**: Utilizes Kotlin Coroutines and Flow for efficient background tasks.
+- **Networking**: Integrated with Retrofit for type-safe REST API communication.
+- **Data Persistence**: Features Room for local database caching and DataStore for user preferences.
+- **Pagination**: Includes Paging 3 for efficiently loading and displaying large datasets.
+- **Navigation**: Uses Navigation-Compose for a streamlined, single-activity navigation flow.
+- **Image Loading**: Leverages Coil for optimized image loading in Compose.
 
-Muhammad Bin Farook(Rafi)
-(https://www.linkedin.com/in/muhammadbinfarook/)
+## Architecture
 
+This template follows the principles of **Clean Architecture** with an **MVVM (Model-View-ViewModel)** presentation layer. This creates a clear separation of concerns that is scalable and testable.
 
-## Version History
+```
++----------------+   +----------------+   +----------------+
+|      UI        |   |      Domain    |   |      Data      |
+| (Jetpack Compose)|   |    (Use Cases) |   | (Repositories) |
++----------------+   +----------------+   +----------------+
+        |                   |                   |
+    ViewModel         Kotlin/Java Lib        Retrofit, Room
+```
 
-* 0.1
-    * Initial Release
+- **UI Layer**: Built with Jetpack Compose. `ViewModel`s provide state to the UI and handle user events.
+- **Domain Layer**: Contains the core business logic of the application, encapsulated in `UseCase`s. This layer is a pure Kotlin module and is independent of the Android framework.
+- **Data Layer**: Manages data from various sources (network, local database). `Repository` classes abstract the data sources from the rest of the app.
+
+## Tech Stack
+
+This project uses a wide range of modern libraries and tools to provide a robust starting point:
+
+- ### Core
+  - [Kotlin](https://kotlinlang.org/): Official language for Android development.
+  - [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html): For asynchronous programming.
+  - [Flow](https://kotlinlang.org/docs/flow.html): A reactive stream library for Kotlin.
+  - [Hilt](https://dagger.dev/hilt/): For dependency injection.
+
+- ### UI
+  - [Jetpack Compose](https://developer.android.com/jetpack/compose): Modern toolkit for building native Android UI.
+  - [Navigation-Compose](https://developer.android.com/jetpack/compose/navigation): For navigating between composables.
+  - [Coil](https://coil-kt.github.io/coil/): Image loading library for Compose.
+
+- ### Data
+  - [Retrofit](https://square.github.io/retrofit/): Type-safe HTTP client for Android.
+  - [Room](https://developer.android.com/training/data-storage/room): Local database for offline caching.
+  - [Paging 3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview): For loading large datasets.
+  - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore): For storing key-value pairs or typed objects.
+
+## Getting Started
+
+To use this template for your own project, follow these steps:
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/your-username/android-compose-template.git YourProjectName
+    cd YourProjectName
+    ```
+
+2.  **Change the package name**:
+    - In Android Studio, right-click on the root package `com.composetemplate`.
+    - Select **Refactor -> Rename**.
+    - In the dialog, choose **Rename package** and enter your desired package name.
+
+3.  **Update `build.gradle.kts`**:
+    - Open `app/build.gradle.kts`.
+    - Change the `applicationId` to your new package name.
+
+4.  **Sync Gradle**:
+    - Click **Sync Now** in the toolbar to apply your changes.
+
+5.  **Start Building**:
+    - You are now ready to build your app on top of this template. Begin by adding your own features and modifying the existing modules.
 
 ## License
 
-This project is licensed under the [Android-compose-template] License - see the [LICENSE.md](https://github.com/rafi4204/android-compose-template/blob/master/LICENSE.md) file for details
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
 
