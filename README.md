@@ -1,10 +1,16 @@
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.x-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-1.6.x-blue.svg?logo=jetpack-compose)](https://developer.android.com/jetpack/compose)
+[![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=24)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](license.md)
+[![Build Status](https://github.com/your-username/android-compose-template/actions/workflows/android.yml/badge.svg)](https://github.com/your-username/android-compose-template/actions)
+
 # Android Compose Template
 
 An opinionated, production-ready template for modern Android applications.
 
 This project serves as a comprehensive blueprint for building scalable and maintainable Android apps using 100% Kotlin, Jetpack Compose, and a cutting-edge tech stack. It's designed to help developers kickstart new projects with a solid architectural foundation.
 
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Features
 
@@ -28,7 +34,7 @@ This template follows the principles of **Clean Architecture** with an **MVVM (M
 |      UI        |   |      Domain    |   |      Data      |
 | (Jetpack Compose)|   |    (Use Cases) |   | (Repositories) |
 +----------------+   +----------------+   +----------------+
-        |                   |                   |
+        |                   |                   | 
     ViewModel         Kotlin/Java Lib        Retrofit, Room
 ```
 
@@ -82,7 +88,9 @@ To use this template for your own project, follow these steps:
 5.  **Start Building**:
     - You are now ready to build your app on top of this template. Begin by adding your own features and modifying the existing modules.
 
+**Note on Badges**: Remember to update the `Build Status` badge with your own GitHub username and repository name after setting up a CI workflow.
+
 ## License
 
-This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [license.md](license.md) file for details.
 
